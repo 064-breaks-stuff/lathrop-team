@@ -1,0 +1,14 @@
+{
+  "/api/contact/route": "/api/contact",
+  "/_not-found/page": "/_not-found",
+  "/api/valuation/route": "/api/valuation",
+  "/communities/page": "/communities",
+  "/contact/page": "/contact",
+  "/page": "/",
+  "/about/page": "/about",
+  "/home-valuation/page": "/home-valuation",
+  "/reviews/page": "/reviews",
+  "/team/page": "/team",
+  "/sell/page": "/sell",
+  "/buy/page": "/buy"
+}

@@ -1,0 +1,29 @@
+public/
+└── images/
+    ├── about/
+    │   ├── lathrop-family-story.jpg
+    │   └── fox-cities-editorial.jpg
+    ├── buy/
+    │   └── buyer-consultation.jpg
+    ├── sell/
+    │   └── seller-marketing.jpg
+    ├── team/
+    │   ├── diane-lathrop.jpg
+    │   ├── shane-lathrop.jpg
+    │   └── oliver-lathrop.jpg
+    ├── communities/
+    │   ├── appleton.jpg
+    │   ├── neenah.jpg
+    │   ├── menasha.jpg
+    │   ├── kaukauna.jpg
+    │   ├── kimberly.jpg
+    │   ├── little-chute.jpg
+    │   ├── greenville.jpg
+    │   └── oshkosh.jpg
+    ├── reviews/
+    │   └── client-story.jpg
+    └── contact/
+        └── fox-cities-office.jpg
+
+npm run build
+npx opennextjs-cloudflare deploy

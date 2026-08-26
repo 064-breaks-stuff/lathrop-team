@@ -1,16 +1,54 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
+import js from '@eslint/js';
+import nextPlugin from '@next/eslint-plugin-next';
+import globals from 'globals';
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
-]);
+export default [
+  {
+    ignores: [
+      '.next/**',
+      'out/**',
+      'build/**',
+      'node_modules/**',
+      'next-env.d.ts',
+    ],
+  },
 
-export default eslintConfig;
+  js.configs.recommended,
+
+  {
+    files: ['**/*.{js,jsx,mjs,cjs}'],
+
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+
+    plugins: {
+      '@next/next': nextPlugin,
+    },
+
+    rules: {
+      ...nextPlugin.configs.recommended.rules,
+
+      /*
+       * JSX and React component usage are compiled by Next.js.
+       * These rules are intentionally disabled for this JS/Next/Three project.
+       */
+      'no-unused-vars': 'off',
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+      'react/no-unknown-property': 'off',
+    },
+  },
+];

@@ -1,0 +1,129 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+/* Basic typography */
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 400;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Layout shell */
+
+.site {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-main {
+  flex: 1;
+}
+
+/* Generic page layout */
+
+.page {
+  padding: 3rem 3rem;
+  border-bottom: var(--border-hairline);
+  background-color: var(--paper);
+}
+
+.page-body {
+  max-width: var(--max-width);
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.page-list {
+  padding-left: 1.2rem;
+  font-size: 0.95rem;
+  color: rgba(20, 20, 20, 0.7);
+}
+
+.page-list li {
+  margin-bottom: 0.5rem;
+}
+
+.page-card {
+  border: var(--border-hairline);
+  padding: 1.5rem;
+  background-color: var(--paper);
+}
+
+.page-card h3 {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.page-card p {
+  color: rgba(20, 20, 20, 0.7);
+}
+
+.page-cta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page-cta p {
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Utilities */
+
+.reviews-placeholder,
+.home-featured-placeholder {
+  border: var(--border-hairline);
+  padding: 1.5rem;
+  color: rgba(20, 20, 20, 0.7);
+  font-size: 0.9rem;
+  background-color: var(--paper);
+}
+
+.page-form-wrapper {
+  max-width: 640px;
+}

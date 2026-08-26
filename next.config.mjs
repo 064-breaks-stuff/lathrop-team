@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-  reactCompiler: true,
+  reactStrictMode: true,
+  images: {
+    unoptimized: true, // easier for GoDaddy static hosting if you export later
+  },
 };
 
 export default nextConfig;

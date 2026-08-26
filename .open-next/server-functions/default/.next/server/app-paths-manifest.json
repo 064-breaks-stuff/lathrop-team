@@ -1,0 +1,14 @@
+{
+  "/api/contact/route": "app/api/contact/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/valuation/route": "app/api/valuation/route.js",
+  "/communities/page": "app/communities/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/page": "app/page.js",
+  "/about/page": "app/about/page.js",
+  "/home-valuation/page": "app/home-valuation/page.js",
+  "/reviews/page": "app/reviews/page.js",
+  "/team/page": "app/team/page.js",
+  "/sell/page": "app/sell/page.js",
+  "/buy/page": "app/buy/page.js"
+}

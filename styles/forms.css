@@ -1,0 +1,71 @@
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-row {
+  display: block;
+}
+
+.form-row--inline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(20, 20, 20, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-input {
+  border: var(--border-hairline);
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9rem;
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+.form-input:focus {
+  outline: 1px solid rgba(20, 20, 20, 0.85);
+}
+
+.form-input::placeholder {
+  color: rgba(20, 20, 20, 0.4);
+}
+
+/* Textarea */
+
+textarea.form-input {
+  resize: vertical;
+}
+
+/* Actions & status */
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-status {
+  font-size: 0.85rem;
+  color: rgba(20, 20, 20, 0.7);
+}
+
+/* KW red used only for error messaging, not UI chrome */
+
+.form-status--error {
+  color: var(--kw-red);
+}
+
+/* Valuation form specific */
+
+.form--valuation {
+  margin-top: 1rem;
+}
