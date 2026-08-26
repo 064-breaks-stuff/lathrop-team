@@ -7,16 +7,20 @@ import Nav from './Nav';
 export default function Header() {
   return (
     <header className="site-header">
-      <Link href="/" className="site-logo" aria-label="Lathrop Team Home">
-        <Image
-          src="/logos/lathrop-logo-icon.jpg"
-          alt="Lathrop Team logo icon"
-          width={40}
-          height={40}
-        />
-        <span className="site-logo-text">LATHROP TEAM</span>
-      </Link>
-      <Nav />
+      <div className="site-header-inner">
+        <Link href="/" className="site-logo" aria-label="Lathrop Team Home">
+          <Image
+            src="/logos/lathrop-logo-icon.jpg"
+            alt="Lathrop Team logo"
+            width={44}
+            height={44}
+            priority
+          />
+          <span className="site-logo-text">Lathrop Team</span>
+        </Link>
+
+        <Nav />
+      </div>
     </header>
   );
 }

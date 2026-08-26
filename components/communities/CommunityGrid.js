@@ -1,20 +1,45 @@
 import communities from '../../data/communities';
+import ScrollReveal from '../ui/ScrollReveal';
 
 export default function CommunityGrid() {
   return (
-    <div className="community-grid">
-      {communities.map((community) => (
-        <article key={community.id} className="community-card">
-          <p className="section-eyebrow">Fox Cities</p>
+    <div className="editorial-community-grid">
+      {communities.map((community, index) => (
+        <ScrollReveal key={community.id} delay={(index % 4) * 90}>
+          <article className="editorial-community-card">
+            <div
+              className={`editorial-community-visual editorial-community-visual--${community.id}`}
+              aria-hidden="true"
+            >
+              <span className="editorial-community-index">{community.index}</span>
 
-          <h3 className="community-name">{community.name}</h3>
+              <span className="editorial-community-initial">
+                {community.initial}
+              </span>
 
-          <p className="community-blurb">{community.blurb}</p>
+              <div className="editorial-community-frame" />
 
-          <span className="community-card-arrow" aria-hidden="true">
-            →
-          </span>
-        </article>
+              <span className="editorial-community-descriptor">
+                {community.descriptor}
+              </span>
+            </div>
+
+            <div className="editorial-community-card-content">
+              <div className="editorial-community-card-header">
+                <p>Fox Cities</p>
+                <span>{community.index}</span>
+              </div>
+
+              <h2>{community.name}</h2>
+
+              <p className="editorial-community-blurb">{community.blurb}</p>
+
+              <span className="editorial-community-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </div>
+          </article>
+        </ScrollReveal>
       ))}
     </div>
   );

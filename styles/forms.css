@@ -29,8 +29,8 @@
 
 .form-fieldset {
   display: grid;
-  gap: 1rem;
   min-width: 0;
+  gap: 1rem;
   margin: 0;
   padding: 0;
   border: 0;
@@ -95,7 +95,9 @@
   color: var(--paper);
 }
 
-textarea.form-input {
+textarea.form-input,
+.form-textarea {
+  min-height: 9rem;
   resize: vertical;
 }
 
@@ -105,19 +107,22 @@ textarea.form-input {
   gap: 1rem;
 }
 
-.form-actions--valuation {
+.form-actions--valuation,
+.form-actions--contact {
   align-items: flex-start;
   padding-top: 0.25rem;
 }
 
-.form-actions--valuation .btn {
+.form-actions--valuation .btn,
+.form-actions--contact .btn {
   flex: 0 0 auto;
   background: var(--paper);
   border-color: var(--paper);
   color: var(--ink);
 }
 
-.form-actions--valuation .btn:hover:not(:disabled) {
+.form-actions--valuation .btn:hover:not(:disabled),
+.form-actions--contact .btn:hover:not(:disabled) {
   background: transparent;
   color: var(--paper);
 }
@@ -146,7 +151,8 @@ textarea.form-input {
   color: #f4a3a3;
 }
 
-.form--valuation {
+.form--valuation,
+.form--contact {
   margin: 0;
 }
 
@@ -161,11 +167,13 @@ textarea.form-input {
     grid-template-columns: 1fr;
   }
 
-  .form-actions--valuation {
+  .form-actions--valuation,
+  .form-actions--contact {
     flex-direction: column;
   }
 
-  .form-actions--valuation .btn {
+  .form-actions--valuation .btn,
+  .form-actions--contact .btn {
     width: 100%;
   }
 

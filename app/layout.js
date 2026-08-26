@@ -11,9 +11,12 @@ import Footer from '../components/layout/Footer';
 import PageTransition from '../components/layout/PageTransition';
 
 export const metadata = {
-  title: 'Lathrop Team | Fox Cities Real Estate',
+  title: {
+    default: 'Lathrop Team | Fox Cities Real Estate',
+    template: '%s | Lathrop Team',
+  },
   description:
-    'Three-generation Fox Cities real estate team with a RealTrends verified record and 525+ five-star reviews.',
+    'Three-generation Fox Cities real estate team with a RealTrends Verified record and 525+ five-star reviews.',
 };
 
 export default function RootLayout({ children }) {
@@ -21,6 +24,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <PageTransition />
+
         <div className="site">
           <Header />
           <main className="site-main">{children}</main>
