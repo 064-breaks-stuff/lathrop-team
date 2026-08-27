@@ -2,13 +2,10 @@
 
 import Link from 'next/link';
 import HeroScene from '../../three/HeroScene';
-import HeroLoader from './HeroLoader';
 
 export default function Hero() {
   return (
     <section className="home-hero">
-      <HeroLoader />
-
       <div className="home-hero-background" aria-hidden="true">
         <img
           className="home-hero-fallback-image"

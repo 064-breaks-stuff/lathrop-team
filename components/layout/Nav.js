@@ -40,12 +40,6 @@ export default function Nav() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  useEffect(() => {
-    document.body.classList.toggle('nav-is-open', isOpen);
-
-    return () => document.body.classList.remove('nav-is-open');
-  }, [isOpen]);
-
   function closeMenu() {
     setIsOpen(false);
   }
@@ -95,15 +89,6 @@ export default function Nav() {
         }
       >
         <div className="site-nav-mobile-inner">
-          <div className="site-nav-mobile-top">
-            <p className="site-nav-mobile-eyebrow">
-              <span className="site-nav-mobile-rule" />
-              Navigate
-            </p>
-
-            <span className="site-nav-mobile-index">Menu / 01</span>
-          </div>
-
           <div className="site-nav-mobile-links">
             {navigationLinks.map((link, index) => (
               <Link
@@ -129,11 +114,6 @@ export default function Nav() {
           >
             Get your home value <span aria-hidden="true">↗</span>
           </Link>
-
-          <div className="site-nav-mobile-footer">
-            <span>Fox Cities, Wisconsin</span>
-            <span>Three generations</span>
-          </div>
         </div>
       </div>
     </nav>
