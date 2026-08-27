@@ -4,14 +4,11 @@ import { useEffect, useId, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const primaryLinks = [
+const navigationLinks = [
   { href: '/buy', label: 'Buy' },
   { href: '/sell', label: 'Sell' },
   { href: '/home-valuation', label: 'Home Valuation' },
   { href: '/communities', label: 'Communities' },
-];
-
-const secondaryLinks = [
   { href: '/reviews', label: 'Reviews' },
   { href: '/team', label: 'Team' },
   { href: '/about', label: 'About' },
@@ -56,7 +53,7 @@ export default function Nav() {
   return (
     <nav className="site-nav-wrap" aria-label="Main navigation">
       <div className="site-nav-desktop">
-        {primaryLinks.map((link) => (
+        {navigationLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
@@ -69,17 +66,6 @@ export default function Nav() {
             {link.label}
           </Link>
         ))}
-
-        <Link
-          href="/contact"
-          className={
-            isActiveRoute(pathname, '/contact')
-              ? 'nav-contact-link nav-contact-link--active'
-              : 'nav-contact-link'
-          }
-        >
-          Let’s talk
-        </Link>
       </div>
 
       <button
@@ -90,7 +76,10 @@ export default function Nav() {
         aria-controls={menuId}
         onClick={() => setIsOpen((open) => !open)}
       >
-        <span className="site-nav-toggle-label">{isOpen ? 'Close' : 'Menu'}</span>
+        <span className="site-nav-toggle-label">
+          {isOpen ? 'Close' : 'Menu'}
+        </span>
+
         <span className="site-nav-toggle-icon" aria-hidden="true">
           <span />
           <span />
@@ -99,7 +88,11 @@ export default function Nav() {
 
       <div
         id={menuId}
-        className={isOpen ? 'site-nav-mobile site-nav-mobile--open' : 'site-nav-mobile'}
+        className={
+          isOpen
+            ? 'site-nav-mobile site-nav-mobile--open'
+            : 'site-nav-mobile'
+        }
       >
         <div className="site-nav-mobile-inner">
           <div className="site-nav-mobile-top">
@@ -107,11 +100,12 @@ export default function Nav() {
               <span className="site-nav-mobile-rule" />
               Navigate
             </p>
+
             <span className="site-nav-mobile-index">Menu / 01</span>
           </div>
 
           <div className="site-nav-mobile-links">
-            {primaryLinks.map((link, index) => (
+            {navigationLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -124,23 +118,6 @@ export default function Nav() {
               >
                 <span>{link.label}</span>
                 <span>{String(index + 1).padStart(2, '0')}</span>
-              </Link>
-            ))}
-          </div>
-
-          <div className="site-nav-mobile-secondary">
-            {secondaryLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={
-                  isActiveRoute(pathname, link.href)
-                    ? 'site-nav-mobile-secondary-link site-nav-mobile-secondary-link--active'
-                    : 'site-nav-mobile-secondary-link'
-                }
-                onClick={closeMenu}
-              >
-                {link.label}
               </Link>
             ))}
           </div>

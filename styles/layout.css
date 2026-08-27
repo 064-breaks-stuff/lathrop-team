@@ -692,3 +692,29 @@
     inset: 1.25rem;
   }
 }
+
+/* =========================================================
+   LOADER / SITE-SHELL HANDOFF
+   The loader owns the viewport until HeroLoader calls onComplete.
+   ========================================================= */
+
+.site--loading {
+  visibility: hidden;
+}
+
+.site--ready {
+  visibility: visible;
+  animation: site-shell-reveal 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes site-shell-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

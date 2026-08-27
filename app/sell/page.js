@@ -119,7 +119,7 @@ export default function SellPage() {
 
           <ScrollReveal delay={260}>
             <article className="sell-proof-stat">
-              <span className="sell-proof-stat-value">35+</span>
+              <span className="sell-proof-stat-value">21+</span>
               <span className="sell-proof-stat-label">
                 Years of Fox Cities experience
               </span>

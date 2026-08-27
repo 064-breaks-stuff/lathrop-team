@@ -12,7 +12,7 @@ const buyerPillars = [
   {
     number: '01',
     title: 'Local perspective',
-    copy: 'Three generations in the Fox Cities means we understand more than a map pin. We help you weigh the character of each neighborhood, everyday routines, resale considerations, and the details that make one street feel different from the next.',
+    copy: "We've lived everyday lives in the Fox Cities across 3 generations. That means we help you weigh the character of each neighborhood, everyday routines, resale considerations, and the details that make one street feel different from the next.",
   },
   {
     number: '02',
