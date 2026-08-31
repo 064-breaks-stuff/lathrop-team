@@ -28,4 +28,4 @@ public/
 npm run build
 npx opennextjs-cloudflare deploy
 
-last prompt response talks about text-only boot screen
+last prompt response talks about 

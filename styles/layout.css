@@ -634,3 +634,107 @@
     inset: 1.25rem;
   }
 }
+
+/* =========================================================
+   SERVER-RENDERED BOOT SCREEN
+   This is visible before React hydration, preventing a blank
+   black screen while the client loader initializes.
+   ========================================================= */
+
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 120ms ease, visibility 120ms ease;
+}
+
+.boot-screen-frame {
+  position: absolute;
+  inset: clamp(1.25rem, 5vw, 5rem);
+  border: 1px solid rgba(250, 248, 245, 0.5);
+}
+
+.boot-screen-content {
+  position: relative;
+  z-index: 1;
+  max-width: min(84vw, 46rem);
+  padding: 2rem;
+  text-align: center;
+}
+
+.boot-screen-eyebrow {
+  display: block;
+  margin-bottom: 1.3rem;
+  color: rgba(250, 248, 245, 0.62);
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.boot-screen-message {
+  margin: 0;
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 5vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.boot-screen-message span {
+  display: block;
+  padding-left: clamp(1rem, 5vw, 5rem);
+  font-style: italic;
+}
+
+.boot-screen-index {
+  position: absolute;
+  right: clamp(1.5rem, 3vw, 3rem);
+  bottom: clamp(1.5rem, 3vw, 2.5rem);
+  color: rgba(250, 248, 245, 0.5);
+  font-size: 0.63rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/*
+  When SiteShell hydrates, the real HeroLoader is mounted.
+  Hide the server boot layer immediately so HeroLoader becomes
+  the only visible layer for the rest of the loading sequence.
+*/
+html[data-app-hydrated='true'] .boot-screen {
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media (max-width: 700px) {
+  .boot-screen-frame {
+    inset: 1.25rem;
+  }
+
+  .boot-screen-content {
+    max-width: min(88vw, 31rem);
+    padding: 1.5rem;
+  }
+
+  .boot-screen-message {
+    font-size: clamp(2.2rem, 10vw, 4.2rem);
+  }
+
+  .boot-screen-message span {
+    padding-left: 1.25rem;
+  }
+
+  .boot-screen-index {
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}

@@ -6,6 +6,7 @@ import '../styles/home.css';
 import '../styles/pages.css';
 import '../styles/forms.css';
 
+import BootScreen from '../components/layout/BootScreen';
 import SiteShell from '../components/layout/SiteShell';
 
 export const metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <BootScreen />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>
