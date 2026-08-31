@@ -710,10 +710,6 @@
   Hide the server boot layer immediately so HeroLoader becomes
   the only visible layer for the rest of the loading sequence.
 */
-html[data-app-hydrated='true'] .boot-screen {
-  visibility: hidden;
-  opacity: 0;
-}
 
 @media (max-width: 700px) {
   .boot-screen-frame {
