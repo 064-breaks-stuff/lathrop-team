@@ -96,7 +96,7 @@
   align-items: center;
   padding: 0.45rem 0;
   color: rgba(20, 20, 20, 0.72);
-  font-size: clamp(0.58rem, 0.68vw, 0.67rem);
+  font-size: clamp(0.89rem, 0.68vw, 0.67rem);
   letter-spacing: 0.14em;
   line-height: 1.2;
   text-transform: uppercase;

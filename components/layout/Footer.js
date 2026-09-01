@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="footer-brand">
           <Link href="/" className="site-logo" aria-label="Lathrop Team Home">
             <Image
-              src="/logos/lathrop-logo-icon.jpg"
+              src="/logos/1.jpg"
               alt="Lathrop Team logo"
               width={42}
               height={42}

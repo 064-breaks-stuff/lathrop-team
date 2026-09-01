@@ -10,7 +10,7 @@ export default function Header() {
       <div className="site-header-inner">
         <Link href="/" className="site-logo" aria-label="Lathrop Team Home">
           <Image
-            src="/logos/lathrop-logo-icon.jpg"
+            src="logos/1.jpg"
             alt="Lathrop Team logo"
             width={44}
             height={44}
