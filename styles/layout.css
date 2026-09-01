@@ -77,9 +77,9 @@
   position: relative;
   display: flex;
   flex: 1;
-  justify-content: flex-end;
-  align-items: center;
   min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .site-nav-desktop {
@@ -96,7 +96,7 @@
   align-items: center;
   padding: 0.45rem 0;
   color: rgba(20, 20, 20, 0.72);
-  font-size: clamp(0.89rem, 0.68vw, 0.67rem);
+  font-size: clamp(0.99rem, 0.68vw, 0.67rem);
   letter-spacing: 0.14em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -277,9 +277,15 @@
 
 .site-footer-top {
   display: grid;
-  grid-template-columns: minmax(240px, 1.25fr) minmax(180px, 0.75fr) minmax(240px, 0.9fr);
-  gap: clamp(2rem, 6vw, 7rem);
-  padding: 6rem 0;
+  grid-template-columns:
+    minmax(240px, 1.05fr)
+    minmax(175px, 0.6fr)
+    minmax(215px, 0.75fr)
+    minmax(300px, 1.25fr);
+  gap: clamp(1.75rem, 3.6vw, 4.5rem);
+  align-items: start;
+  max-width: 1680px;
+  padding: 5.5rem 0;
   border-top: var(--border-hairline);
 }
 
@@ -290,7 +296,7 @@
 }
 
 .footer-brand > p {
-  max-width: 365px;
+  max-width: 355px;
   margin: 2rem 0 0;
   color: rgba(20, 20, 20, 0.68);
   font-size: 0.92rem;
@@ -377,10 +383,60 @@
   text-underline-offset: 0.18em;
 }
 
+/* =========================================================
+   FOOTER MAP
+   ========================================================= */
+
+.footer-map {
+  min-width: 0;
+}
+
+.footer-map-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-map-header .footer-heading {
+  margin: 0;
+}
+
+.footer-map-header span {
+  color: rgba(20, 20, 20, 0.5);
+  font-size: 0.6rem;
+  letter-spacing: 0.13em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.footer-map-frame {
+  position: relative;
+  min-height: 250px;
+  overflow: hidden;
+  border: var(--border-hairline);
+  background: var(--bone);
+}
+
+.footer-map-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(100%) contrast(0.92);
+}
+
+/* =========================================================
+   FOOTER COMPLIANCE
+   ========================================================= */
+
 .site-footer-compliance {
   display: grid;
   grid-template-columns: minmax(280px, 1.1fr) minmax(260px, 0.9fr);
   gap: clamp(2rem, 7vw, 8rem);
+  max-width: 1680px;
   padding: 2.2rem 0;
   border-top: var(--border-hairline);
 }
@@ -448,6 +504,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
+  max-width: 1680px;
   padding: 1.5rem 0 2rem;
   border-top: var(--border-hairline);
   color: rgba(20, 20, 20, 0.52);
@@ -524,121 +581,7 @@
 }
 
 /* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 980px) {
-  .site-header-inner {
-    min-height: 5.35rem;
-    padding: 0.85rem 2rem;
-  }
-
-  .site-footer {
-    padding: 0 2rem;
-  }
-
-  .site-footer-top {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
-
-  .footer-contact {
-    grid-column: 1 / -1;
-    max-width: 520px;
-  }
-
-  .footer-contact address {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
-  }
-
-  .site-footer-compliance {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-compliance-marks {
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 700px) {
-  .site-header-inner {
-    min-height: 5rem;
-    padding: 0.75rem 1.5rem;
-  }
-
-  .site-logo {
-    gap: 0.6rem;
-  }
-
-  .site-logo img {
-    height: 36px;
-  }
-
-  .site-logo-text {
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-  }
-
-  .site-nav-mobile {
-    width: calc(100vw - 3rem);
-  }
-
-  .site-footer {
-    padding: 0 1.5rem;
-  }
-
-  .site-footer-top {
-    grid-template-columns: 1fr;
-    padding: 4.5rem 0;
-  }
-
-  .footer-brand > p {
-    margin-top: 1.5rem;
-  }
-
-  .footer-contact {
-    grid-column: auto;
-  }
-
-  .footer-contact address {
-    grid-template-columns: 1fr;
-    gap: 1.1rem;
-  }
-
-  .site-footer-compliance {
-    padding: 1.75rem 0;
-  }
-
-  .footer-kw-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .footer-compliance-marks {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .site-footer-bottom {
-    align-items: flex-start;
-    flex-direction: column;
-    padding-bottom: 1.5rem;
-  }
-
-  .site-footer-bottom > div {
-    justify-content: flex-start;
-  }
-
-  .page-transition-frame {
-    inset: 1.25rem;
-  }
-}
-
-/* =========================================================
-   SERVER-RENDERED BOOT SCREEN
-   This is visible before React hydration, preventing a blank
-   black screen while the client loader initializes.
+   BOOT SCREEN
    ========================================================= */
 
 .boot-screen {
@@ -705,13 +648,162 @@
   text-transform: uppercase;
 }
 
-/*
-  When SiteShell hydrates, the real HeroLoader is mounted.
-  Hide the server boot layer immediately so HeroLoader becomes
-  the only visible layer for the rest of the loading sequence.
-*/
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1320px) {
+  .site-footer-top {
+    grid-template-columns:
+      minmax(220px, 1.05fr)
+      minmax(160px, 0.62fr)
+      minmax(200px, 0.78fr)
+      minmax(260px, 1.05fr);
+    gap: 2rem;
+  }
+
+  .footer-brand > p {
+    max-width: 305px;
+  }
+
+  .footer-map-frame {
+    min-height: 230px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .site-footer-top {
+    grid-template-columns: minmax(240px, 1.1fr) minmax(180px, 0.8fr);
+  }
+
+  .footer-contact {
+    grid-column: 1;
+  }
+
+  .footer-map {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .footer-map-frame {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 980px) {
+  .site-header-inner {
+    min-height: 5.35rem;
+    padding: 0.85rem 2rem;
+  }
+
+  .site-footer {
+    padding: 0 2rem;
+  }
+
+  .site-footer-top {
+    grid-template-columns: 1.1fr 0.9fr;
+    padding: 5rem 0;
+  }
+
+  .footer-map {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    margin-top: 1rem;
+  }
+
+  .footer-map-frame {
+    min-height: 360px;
+  }
+
+  .site-footer-compliance {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-compliance-marks {
+    justify-content: flex-start;
+  }
+}
 
 @media (max-width: 700px) {
+  .site-header-inner {
+    min-height: 5rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .site-logo {
+    gap: 0.6rem;
+  }
+
+  .site-logo img {
+    height: 36px;
+  }
+
+  .site-logo-text {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+  }
+
+  .site-nav-mobile {
+    width: calc(100vw - 3rem);
+  }
+
+  .site-footer {
+    padding: 0 1.5rem;
+  }
+
+  .site-footer-top {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 4.5rem 0;
+  }
+
+  .footer-brand > p {
+    max-width: 360px;
+    margin-top: 1.5rem;
+  }
+
+  .footer-map {
+    grid-column: auto;
+    margin-top: 0;
+  }
+
+  .footer-map-frame {
+    min-height: 280px;
+  }
+
+  .footer-map-header {
+    margin-bottom: 1rem;
+  }
+
+  .site-footer-compliance {
+    padding: 1.75rem 0;
+  }
+
+  .footer-kw-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-compliance-marks {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .site-footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-bottom: 1.5rem;
+  }
+
+  .site-footer-bottom > div {
+    justify-content: flex-start;
+  }
+
+  .page-transition-frame {
+    inset: 1.25rem;
+  }
+
   .boot-screen-frame {
     inset: 1.25rem;
   }

@@ -73,6 +73,26 @@ export default function Footer() {
             </p>
           </address>
         </div>
+
+        <div className="footer-map">
+          <div className="footer-map-header">
+            <p className="footer-heading">Office location</p>
+            <span>Appleton, Wisconsin</span>
+          </div>
+
+          <div className="footer-map-frame">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2857.210069477556!2d-88.46770222396349!3d44.26449767107976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8803b7a5ba3b6f2d%3A0x6b0d2f80904d9e2f!2sKeller%20Williams%20Fox%20Cities!5e0!3m2!1sen!2sin!4v1788252496599!5m2!1sen!2sin"
+              title="Keller Williams Fox Cities office location in Appleton, Wisconsin"
+              width="600"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="site-footer-compliance">
@@ -82,7 +102,7 @@ export default function Footer() {
 
             <Image
               /*
-                Replace this with the exact approved KW logo path:
+                Replace with the exact approved KW logo file path.
                 Example: /logos/kw-logo.jpg
               */
               src="/PLACEHOLDER-KW-LOGO.jpg"
@@ -104,7 +124,7 @@ export default function Footer() {
           <div className="footer-compliance-mark">
             <Image
               /*
-                Replace this with the exact approved Equal Housing mark path:
+                Replace with the approved Equal Housing mark file path.
                 Example: /logos/equal-housing.jpg
               */
               src="/PLACEHOLDER-EQUAL-HOUSING.jpg"
@@ -118,7 +138,7 @@ export default function Footer() {
           <div className="footer-compliance-mark">
             <Image
               /*
-                Replace this with the exact approved REALTOR® mark path:
+                Replace with the approved REALTOR® mark file path.
                 Example: /logos/realtor-mark.jpg
               */
               src="/PLACEHOLDER-REALTOR-MARK.jpg"

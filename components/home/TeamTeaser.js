@@ -6,7 +6,7 @@ export default function TeamTeaser() {
     <section className="home-team">
       <div className="home-team-image-wrap">
         <img
-          src="/hero/hero.jpg"
+          src="/hero/hero2.jpg"
           alt="The Fox Cities area served by the Lathrop Team"
           className="home-team-image"
         />
