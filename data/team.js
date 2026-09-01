@@ -12,6 +12,8 @@ const team = [
     descriptor: 'Experience / Perspective',
     stat: '21+',
     statLabel: 'Years of experience',
+    image: '/team/diane.png',
+    imageAlt: 'Diane Lathrop, Realtor with the Lathrop Team',
     bio: 'With over 21 years of experience in the Fox Cities market, Diane has helped hundreds of families buy and sell homes locally. Independent rankings place her in the top 0.17% of agents in Appleton, with 996 closed sales recorded on Zillow.',
   },
   {
@@ -27,6 +29,8 @@ const team = [
     descriptor: 'Local knowledge / Guidance',
     stat: '444',
     statLabel: 'Listings and sales tracked on Zillow',
+    image: '/team/shane.jpg',
+    imageAlt: 'Shane Lathrop, Realtor with the Lathrop Team',
     bio: 'Shane has lived near the valley his entire life, giving him a nuanced understanding of how the Fox Cities market moves. Zillow tracks 444 team listings and sales under his profile, reflecting years of active work in pricing, marketing, and negotiation.',
   },
   {
@@ -42,6 +46,8 @@ const team = [
     descriptor: 'Modern marketing / Service',
     stat: '45',
     statLabel: 'Recent sales tracked under his license',
+    image: '/team/oliver.jpg',
+    imageAlt: 'Oliver Lathrop, Realtor with the Lathrop Team',
     bio: 'Oliver represents the third generation of the team and brings a modern perspective to marketing and client service. He has 45 recent sales tracked under his license and focuses on clear communication, detailed market research, and strong presentation.',
   },
 ];

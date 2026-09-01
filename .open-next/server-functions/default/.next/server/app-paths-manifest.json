@@ -1,14 +1,14 @@
 {
-  "/api/contact/route": "app/api/contact/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/valuation/route": "app/api/valuation/route.js",
-  "/communities/page": "app/communities/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/page": "app/page.js",
-  "/about/page": "app/about/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
   "/home-valuation/page": "app/home-valuation/page.js",
-  "/reviews/page": "app/reviews/page.js",
+  "/page": "app/page.js",
+  "/communities/page": "app/communities/page.js",
+  "/buy/page": "app/buy/page.js",
   "/team/page": "app/team/page.js",
+  "/about/page": "app/about/page.js",
   "/sell/page": "app/sell/page.js",
-  "/buy/page": "app/buy/page.js"
+  "/contact/page": "app/contact/page.js",
+  "/reviews/page": "app/reviews/page.js"
 }

@@ -56,7 +56,7 @@ export default function HomeValuationPage() {
             </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={270}>
+          <ScrollReveal delay={270} className="editorial-hero-actions">
             <a href="#valuation-form" className="btn btn--light">
               Get your home value
             </a>

@@ -1,14 +1,14 @@
 {
-  "/api/contact/route": "/api/contact",
-  "/_not-found/page": "/_not-found",
   "/api/valuation/route": "/api/valuation",
-  "/communities/page": "/communities",
-  "/contact/page": "/contact",
-  "/page": "/",
-  "/about/page": "/about",
+  "/_not-found/page": "/_not-found",
+  "/api/contact/route": "/api/contact",
   "/home-valuation/page": "/home-valuation",
-  "/reviews/page": "/reviews",
+  "/page": "/",
+  "/communities/page": "/communities",
+  "/buy/page": "/buy",
   "/team/page": "/team",
+  "/about/page": "/about",
   "/sell/page": "/sell",
-  "/buy/page": "/buy"
+  "/contact/page": "/contact",
+  "/reviews/page": "/reviews"
 }

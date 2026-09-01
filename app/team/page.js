@@ -38,7 +38,7 @@ export default function TeamPage() {
             </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={270}>
+          <ScrollReveal delay={270} className="editorial-hero-actions">
             <Link href="/contact" className="btn btn--light">
               Start a conversation
             </Link>

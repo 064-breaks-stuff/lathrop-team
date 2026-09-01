@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import team from '../../data/team';
 import ScrollReveal from '../ui/ScrollReveal';
 
@@ -9,15 +10,28 @@ export default function TeamGrid() {
           <article className="editorial-team-card">
             <div
               className={`editorial-team-portrait editorial-team-portrait--${member.id}`}
-              aria-hidden="true"
             >
-              <span className="editorial-team-portrait-index">{member.index}</span>
+              <Image
+                src={member.image}
+                alt={member.imageAlt}
+                fill
+                sizes="(max-width: 700px) 100vw, (max-width: 1060px) 50vw, 33vw"
+                className="editorial-team-photo"
+              />
 
-              <span className="editorial-team-portrait-initial">
-                {member.initial}
+              <div
+                className="editorial-team-portrait-overlay"
+                aria-hidden="true"
+              />
+
+              <span className="editorial-team-portrait-index">
+                {member.index}
               </span>
 
-              <div className="editorial-team-portrait-frame" />
+              <div
+                className="editorial-team-portrait-frame"
+                aria-hidden="true"
+              />
 
               <span className="editorial-team-portrait-descriptor">
                 {member.descriptor}
@@ -31,12 +45,19 @@ export default function TeamGrid() {
                   <h2>{member.name}</h2>
                 </div>
 
-                <span className="editorial-team-card-index">{member.index}</span>
+                <span className="editorial-team-card-index">
+                  {member.index}
+                </span>
               </div>
 
               <div className="editorial-team-stat">
-                <span className="editorial-team-stat-value">{member.stat}</span>
-                <span className="editorial-team-stat-label">{member.statLabel}</span>
+                <span className="editorial-team-stat-value">
+                  {member.stat}
+                </span>
+
+                <span className="editorial-team-stat-label">
+                  {member.statLabel}
+                </span>
               </div>
 
               <p className="editorial-team-bio">{member.bio}</p>

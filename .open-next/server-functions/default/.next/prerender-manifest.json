@@ -1,7 +1,8 @@
 {
   "version": 4,
   "routes": {
-    "/home-valuation": {
+    "/_not-found": {
+      "initialStatus": 404,
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -14,8 +15,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/home-valuation",
-      "dataRoute": "/home-valuation.rsc",
+      "srcRoute": "/_not-found",
+      "dataRoute": "/_not-found.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -49,7 +50,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/buy": {
+    "/contact": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -62,33 +63,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/buy",
-      "dataRoute": "/buy.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/_not-found": {
-      "initialStatus": 404,
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/_not-found",
-      "dataRoute": "/_not-found.rsc",
+      "srcRoute": "/contact",
+      "dataRoute": "/contact.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -146,6 +122,54 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/sell": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/sell",
+      "dataRoute": "/sell.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/buy": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/buy",
+      "dataRoute": "/buy.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/reviews": {
       "experimentalBypassFor": [
         {
@@ -170,7 +194,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/contact": {
+    "/home-valuation": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -183,32 +207,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/contact",
-      "dataRoute": "/contact.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/sell": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/sell",
-      "dataRoute": "/sell.rsc",
+      "srcRoute": "/home-valuation",
+      "dataRoute": "/home-valuation.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -246,8 +246,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "b196f396cfac7a435f3b692f8cbb4e66",
-    "previewModeSigningKey": "7e51ef768c3cbef15f825c4cb9d8015b25ceddea07c878b68a20095ba161372c",
-    "previewModeEncryptionKey": "f05459d6b4e3de509d7afaa80a9a6e94381bd96c93bfee6b1df8a2ac4098a1d0"
+    "previewModeId": "d7a8e4986d0ace674452e66f04da66e1",
+    "previewModeSigningKey": "83699b292120a1493ea6ad78814a190e3a77501e5c31e0c13ef057dcbfeb7f82",
+    "previewModeEncryptionKey": "30f54939ba4cc49d487ead5d88e2442fb682f528cc75ac82d93893792c8f8bd0"
   }
 }

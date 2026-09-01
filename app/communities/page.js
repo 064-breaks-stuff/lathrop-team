@@ -39,7 +39,7 @@ export default function CommunitiesPage() {
             </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={270}>
+          <ScrollReveal delay={270} className="editorial-hero-actions">
             <Link href="/contact" className="btn btn--light">
               Talk through your search
             </Link>

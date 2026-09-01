@@ -25,7 +25,6 @@ public/
     └── contact/
         └── fox-cities-office.jpg
 
-npm run build
-npx opennextjs-cloudflare deploy
+npx opennextjs-cloudflare build && npx opennextjs-cloudflare deploy
 
 last prompt response talks about 

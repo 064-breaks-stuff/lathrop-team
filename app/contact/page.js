@@ -62,7 +62,7 @@ export default function ContactPage() {
             </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={270}>
+          <ScrollReveal delay={270} className="editorial-hero-actions">
             <a href="#contact-form" className="btn btn--light">
               Send us a message
             </a>

@@ -56,7 +56,7 @@ export default function AboutPage() {
             </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={270}>
+          <ScrollReveal delay={270} className="editorial-hero-actions">
             <Link href="/team" className="btn btn--light">
               Meet the team
             </Link>
