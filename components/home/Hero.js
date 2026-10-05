@@ -5,47 +5,57 @@ export default function Hero() {
     <section className="home-hero">
       <div className="home-hero-background" aria-hidden="true">
         <img
+          className="home-hero-fallback-image"
           src="/hero/hero.jpg"
           alt=""
-          className="home-hero-fallback-image"
         />
-        <div className="home-hero-overlay" />
       </div>
 
+      <div className="home-hero-overlay" aria-hidden="true" />
+
       <div className="home-hero-content">
-        <p className="home-hero-eyebrow">Lathrop Team · Fox Cities, Wisconsin</p>
-
-        <h1 className="home-hero-title">
-          Local guidance for
-          <em>your next chapter.</em>
-        </h1>
-
-        <p className="home-hero-copy">
-          Three generations of local real estate experience, helping Fox Cities
-          families buy, sell, and move forward with confidence.
+        <p className="hero-eyebrow">
+          Lathrop Team
+          <span className="hero-eyebrow-rule" />
+          Fox Cities, Wisconsin
         </p>
 
-        <div className="home-hero-actions">
+        <h1 className="hero-title">
+          <span>Fox Cities</span>
+          <span>Real Estate,</span>
+          <em>Refined.</em>
+        </h1>
+
+        <p className="hero-description">
+          Three generations of local expertise, a RealTrends verified
+          performance record, and 525+ five-star reviews guiding you home.
+        </p>
+
+        <p className="hero-affiliation">
+          Proudly affiliated with Keller Williams Fox Cities.
+        </p>
+
+        <div className="hero-actions">
           <Link href="/buy" className="btn btn--light">
-            Explore homes
+            Find your next home
           </Link>
 
-          <Link href="/home-valuation" className="text-link text-link--light">
-            Get your home value <span aria-hidden="true">↗</span>
+          <Link href="/home-valuation" className="btn btn--outline-light">
+            See what your home is worth
           </Link>
         </div>
       </div>
 
-      <div className="home-hero-footnote">
-        <span>Appleton · Neenah · Menasha · Fox Cities</span>
-        <span className="home-hero-footnote-line" />
-        <span>Three generations</span>
+      <div className="home-hero-index" aria-hidden="true">
+        <span>01</span>
+        <span className="home-hero-index-line" />
+        <span>Fox Cities</span>
       </div>
 
-      <a href="#home-intro" className="home-hero-scroll" aria-label="Scroll to explore">
+      <div className="home-hero-scroll" aria-hidden="true">
         <span>Scroll to explore</span>
-        <span aria-hidden="true">↓</span>
-      </a>
+        <span className="home-hero-scroll-line" />
+      </div>
     </section>
   );
 }
