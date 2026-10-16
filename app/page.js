@@ -6,6 +6,7 @@ import BuySellSplit from '../components/home/BuySellSplit';
 import CommunitiesTeaser from '../components/home/CommunitiesTeaser';
 import ReviewsTeaser from '../components/home/ReviewsTeaser';
 import TeamTeaser from '../components/home/TeamTeaser';
+import GuidesLeadMagnet from '../components/forms/GuidesLeadMagnet';
 
 export const metadata = {
   title: 'Lathrop Team | Fox Cities Real Estate',
@@ -24,6 +25,7 @@ export default function HomePage() {
       <CommunitiesTeaser />
       <ReviewsTeaser />
       <TeamTeaser />
+      <GuidesLeadMagnet />
     </>
   );
 }
