@@ -2937,3 +2937,9 @@
     margin-top: 3rem;
   }
 }
+
+/* Remove extra decorative lines; retain the outer portrait frame. */
+.editorial-team-portrait::before,
+.editorial-team-portrait::after {
+  content: none;
+}

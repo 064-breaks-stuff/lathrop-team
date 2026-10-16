@@ -12,7 +12,7 @@ const team = [
     descriptor: 'Experience / Perspective',
     stat: '21+',
     statLabel: 'Years of experience',
-    image: '/team/diane.png',
+    image: '/team/diane.jpg',
     imageAlt: 'Diane Lathrop, Realtor with the Lathrop Team',
     bio: 'Diane began her career at Sara Lee Corporation in New London, Wisconsin, in 1975, where she worked for 14 years. In 1989, she joined Wisconsin Tissue Mills in Neenah, Wisconsin. While working at the mill producing napkins, she decided to pursue her Wisconsin real estate license. She received her license in 2005 and joined Century 21 Affiliated. While still working at Wisconsin Tissue, Diane began selling homes to her coworkers, steadily building her business until real estate became her full-time career. She spent 21 years with Century 21 Affiliated before joining Keller Williams of the Fox Cities in March 2026. Today, she is happy to be where she is and proud of the path that brought her here.',
   },
