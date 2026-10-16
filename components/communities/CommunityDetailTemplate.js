@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import GuidesLeadMagnet from '../forms/GuidesLeadMagnet';
 import './community-detail.css';
+import './community-image-credits.css';
 
 function CommunityMedia({ image, priority = false }) {
   if (!image.src || image.isPlaceholder) {
@@ -35,6 +36,38 @@ function CommunityMedia({ image, priority = false }) {
   );
 }
 
+function CommunityImageCredit({ image }) {
+  if (!image.attribution || !image.src || image.isPlaceholder) {
+    return null;
+  }
+
+  const {
+    title,
+    author,
+    sourceUrl,
+    licenseName,
+    licenseUrl,
+    changes,
+  } = image.attribution;
+
+  return (
+    <figcaption className="community-image-credit">
+      <a href={sourceUrl}>{title}</a>
+      {' — Photo by '}
+      <span>{author}</span>
+      {' / Wikimedia Commons / '}
+      <a href={licenseUrl} rel="license">
+        {licenseName}
+      </a>
+      {changes && (
+        <span className="community-image-credit-changes">
+          {changes}
+        </span>
+      )}
+    </figcaption>
+  );
+}
+
 function CommunityHero({ community }) {
   return (
     <section
@@ -63,9 +96,13 @@ function CommunityHero({ community }) {
         </div>
       </div>
 
-      <div className="community-detail-hero-media">
-        <CommunityMedia image={community.heroImage} priority />
-      </div>
+      <figure className="community-hero-figure">
+        <div className="community-detail-hero-media">
+          <CommunityMedia image={community.heroImage} priority />
+        </div>
+
+        <CommunityImageCredit image={community.heroImage} />
+      </figure>
     </section>
   );
 }
@@ -77,7 +114,9 @@ function CommunityOverview({ community }) {
       aria-labelledby="community-overview-title"
     >
       <div>
-        <p className="community-detail-eyebrow">01 — Local perspective</p>
+        <p className="community-detail-eyebrow">
+          01 — Local perspective
+        </p>
         <h2 id="community-overview-title">
           Get to know {community.name}.
         </h2>
@@ -97,7 +136,9 @@ function CommunityStats({ community }) {
       aria-labelledby="community-market-title"
     >
       <div className="community-detail-section-heading">
-        <p className="community-detail-eyebrow">02 — Market context</p>
+        <p className="community-detail-eyebrow">
+          02 — Market context
+        </p>
         <h2 id="community-market-title">
           {community.name}, by the numbers.
         </h2>
@@ -112,9 +153,13 @@ function CommunityStats({ community }) {
           <div className="community-stat-card" key={stat.label}>
             <dt>{stat.label}</dt>
             <dd className="community-stat-value">{stat.value}</dd>
+
             {stat.period && (
-              <dd className="community-stat-note">{stat.period}</dd>
+              <dd className="community-stat-note">
+                {stat.period}
+              </dd>
             )}
+
             {stat.source && (
               <dd className="community-stat-note">
                 Source: {stat.source}
@@ -146,12 +191,16 @@ function CommunityPropertyGallery({ community }) {
 
       <div className="community-property-grid">
         {community.propertyGallery.map((image, index) => (
-          <div
-            className="community-property-media"
+          <figure
+            className="community-gallery-figure"
             key={`${community.slug}-property-${index}`}
           >
-            <CommunityMedia image={image} />
-          </div>
+            <div className="community-property-media">
+              <CommunityMedia image={image} />
+            </div>
+
+            <CommunityImageCredit image={image} />
+          </figure>
         ))}
       </div>
     </section>
@@ -166,6 +215,7 @@ function CommunityFinalCta({ community }) {
     >
       <p className="community-detail-eyebrow">Your next chapter</p>
       <h2 id="community-final-title">{community.finalCta.title}</h2>
+
       <p className="community-detail-section-copy">
         {community.finalCta.copy}
       </p>

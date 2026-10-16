@@ -1,3 +1,5 @@
+import communityImages from './communityImages';
+
 const statLabels = [
   'Median sale price',
   'Average days on market',
@@ -26,7 +28,7 @@ function createPlaceholderImage(label) {
 
 function createCommunityDetails(name) {
   return {
-    heroImage: createPlaceholderImage(`${name} community image`),
+    heroImage: communityImages[name],
     stats: createPlaceholderStats(),
     propertyGallery: [
       createPlaceholderImage(`${name} property photo 01`),
