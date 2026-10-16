@@ -14,7 +14,7 @@ const team = [
     statLabel: 'Years of experience',
     image: '/team/diane.jpg',
     imageAlt: 'Diane Lathrop, Realtor with the Lathrop Team',
-    bio: 'Diane began her career at Sara Lee Corporation in New London, Wisconsin, in 1975, where she worked for 14 years. In 1989, she joined Wisconsin Tissue Mills in Neenah, Wisconsin. While working at the mill producing napkins, she decided to pursue her Wisconsin real estate license. She received her license in 2005 and joined Century 21 Affiliated. While still working at Wisconsin Tissue, Diane began selling homes to her coworkers, steadily building her business until real estate became her full-time career. She spent 21 years with Century 21 Affiliated before joining Keller Williams of the Fox Cities in March 2026. Today, she is happy to be where she is and proud of the path that brought her here.',
+    bio: 'Diane’s career reflects a strong work ethic, deep local roots, and decades of client dedication. Starting in corporate operations at Sara Lee and Wisconsin Tissue Mills, she earned her real estate license in 2005, initially serving her mill coworkers before transitioning real estate into a thriving full-time career. Following a distinguished 21-year tenure with Century 21 Affiliated, Diane joined Keller Williams Fox Cities in March 2026, bringing over two decades of local market knowledge, trusted service, and practical expertise to every transaction.',
   },
   {
     id: 'shane',
@@ -31,7 +31,7 @@ const team = [
     statLabel: 'Listings and sales tracked on Zillow',
     image: '/team/shane.jpg',
     imageAlt: 'Shane Lathrop, Realtor with the Lathrop Team',
-    bio: "A US Navy Veteran and lifelong Fox Valley resident, Shane brings over 30 years of construction experience and 24+ years as a successful local business owner to every client relationship. His extensive background in construction, design, and property improvement allows him to look beyond the surface—helping buyers and sellers accurately understand a home\'s true potential, value, and structural integrity. Shane’s approach is rooted in clear communication, sharp negotiation, and personal attention. Recognized as Rotarian of the Year and a former nominee for the Appleton Chamber of Commerce Small Business of the Year, he actively serves the community through board roles with Rebuilding Together Fox Valley, Downtown Rotary, and several local grant committees. Guided by principles of stewardship, integrity, and Rotary’s Four-Way Test, Shane offers practical expertise and dependable, honest guidance for every move.",
+    bio: "Shane combines deep Fox Valley roots with 30+ years of construction expertise and over two decades of local business leadership. As a US Navy Veteran and Rotarian of the Year, Shane brings an eye for property potential, honest guidance, and a strong commitment to community stewardship to every client buying, selling, or investing in the area.",
   },
   {
     id: 'oliver',
