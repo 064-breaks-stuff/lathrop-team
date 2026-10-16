@@ -8,7 +8,6 @@ const navigationLinks = [
   { href: '/communities', label: 'Communities' },
   { href: '/team', label: 'Team' },
   { href: '/about', label: 'About' },
-  { href: '/reviews', label: 'Reviews' },
   { href: '/contact', label: 'Contact' },
 ];
 

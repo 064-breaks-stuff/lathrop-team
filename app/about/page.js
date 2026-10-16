@@ -202,8 +202,8 @@ export default function AboutPage() {
               informed, supported, and satisfied with the outcome.
             </p>
 
-            <Link href="/reviews" className="text-link">
-              Explore our review summary <span aria-hidden="true">↗</span>
+            <Link href="/#reviews" className="text-link">
+              Read what clients say <span aria-hidden="true">↗</span>
             </Link>
           </ScrollReveal>
         </div>

@@ -4,12 +4,12 @@ import { useEffect, useId, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+
 const navigationLinks = [
   { href: '/buy', label: 'Buy' },
   { href: '/sell', label: 'Sell' },
   { href: '/home-valuation', label: 'Home Valuation' },
   { href: '/communities', label: 'Communities' },
-  { href: '/reviews', label: 'Reviews' },
   { href: '/team', label: 'Team' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
