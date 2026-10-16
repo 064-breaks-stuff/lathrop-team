@@ -14,7 +14,7 @@ const team = [
     statLabel: 'Years of experience',
     image: '/team/diane.png',
     imageAlt: 'Diane Lathrop, Realtor with the Lathrop Team',
-    bio: 'With over 21 years of experience in the Fox Cities market, Diane has helped hundreds of families buy and sell homes locally. Independent rankings place her in the top 0.17% of agents in Appleton, with 996 closed sales recorded on Zillow.',
+    bio: 'Diane began her career at Sara Lee Corporation in New London, Wisconsin, in 1975, where she worked for 14 years. In 1989, she joined Wisconsin Tissue Mills in Neenah, Wisconsin. While working at the mill producing napkins, she decided to pursue her Wisconsin real estate license. She received her license in 2005 and joined Century 21 Affiliated. While still working at Wisconsin Tissue, Diane began selling homes to her coworkers, steadily building her business until real estate became her full-time career. She spent 21 years with Century 21 Affiliated before joining Keller Williams of the Fox Cities in March 2026. Today, she is happy to be where she is and proud of the path that brought her here.',
   },
   {
     id: 'shane',
@@ -31,7 +31,7 @@ const team = [
     statLabel: 'Listings and sales tracked on Zillow',
     image: '/team/shane.jpg',
     imageAlt: 'Shane Lathrop, Realtor with the Lathrop Team',
-    bio: 'Shane has lived near the valley his entire life, giving him a nuanced understanding of how the Fox Cities market moves. Zillow tracks 444 team listings and sales under his profile, reflecting years of active work in pricing, marketing, and negotiation.',
+    bio: "A US Navy Veteran and lifelong Fox Valley resident, Shane brings over 30 years of construction experience and 24+ years as a successful local business owner to every client relationship. His extensive background in construction, design, and property improvement allows him to look beyond the surface—helping buyers and sellers accurately understand a home\'s true potential, value, and structural integrity. Shane’s approach is rooted in clear communication, sharp negotiation, and personal attention. Recognized as Rotarian of the Year and a former nominee for the Appleton Chamber of Commerce Small Business of the Year, he actively serves the community through board roles with Rebuilding Together Fox Valley, Downtown Rotary, and several local grant committees. Guided by principles of stewardship, integrity, and Rotary’s Four-Way Test, Shane offers practical expertise and dependable, honest guidance for every move.",
   },
   {
     id: 'oliver',
@@ -48,7 +48,7 @@ const team = [
     statLabel: 'Recent sales tracked under his license',
     image: '/team/oliver.jpg',
     imageAlt: 'Oliver Lathrop, Realtor with the Lathrop Team',
-    bio: 'Oliver represents the third generation of the team and brings a modern perspective to marketing and client service. He has 45 recent sales tracked under his license and focuses on clear communication, detailed market research, and strong presentation.',
+    bio: 'Oliver Lathrop is a Fox Valley real estate professional specializing in residential and commercial properties. As part of The Lathrop Team, he combines multi-generational experience with a structured, relationship-driven approach to serve homeowners, investors, and business owners.',
   },
 ];
 
