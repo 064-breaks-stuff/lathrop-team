@@ -9,6 +9,9 @@ import '../styles/forms.css';
 import SiteShell from '../components/layout/SiteShell';
 
 export const metadata = {
+  metadataBase: new URL(
+    'https://lathrop-team.united-states.workers.dev'
+  ),
   title: {
     default: 'Lathrop Team | Fox Cities Real Estate',
     template: '%s | Lathrop Team',

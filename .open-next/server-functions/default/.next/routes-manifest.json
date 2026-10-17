@@ -10,6 +10,12 @@
       "internal": true,
       "statusCode": 308,
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    },
+    {
+      "source": "/reviews",
+      "destination": "/#reviews",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/reviews(?:/)?$"
     }
   ],
   "headers": [],
@@ -18,7 +24,16 @@
     "afterFiles": [],
     "fallback": []
   },
-  "dynamicRoutes": [],
+  "dynamicRoutes": [
+    {
+      "page": "/communities/[slug]",
+      "regex": "^/communities/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/communities/(?<nxtPslug>[^/]+?)(?:/)?$"
+    }
+  ],
   "staticRoutes": [
     {
       "page": "/",
@@ -61,12 +76,6 @@
       "regex": "^/home\\-valuation(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/home\\-valuation(?:/)?$"
-    },
-    {
-      "page": "/reviews",
-      "regex": "^/reviews(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/reviews(?:/)?$"
     },
     {
       "page": "/sell",

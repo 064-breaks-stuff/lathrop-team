@@ -1,155 +1,51 @@
 'use client';
 
-import { useState } from 'react';
-import Button from '../ui/Button';
+import Script from 'next/script';
 
 export default function ContactForm() {
-  const [status, setStatus] = useState({
-    loading: false,
-    message: null,
-    error: false,
-  });
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    setStatus({ loading: true, message: null, error: false });
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-
-    const payload = {
-      name: formData.get('name') || '',
-      email: formData.get('email') || '',
-      phone: formData.get('phone') || '',
-      intent: formData.get('intent') || '',
-      message: formData.get('message') || '',
-    };
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error('Request failed');
-      }
-
-      setStatus({
-        loading: false,
-        message: 'Thank you — we’ll be in touch shortly.',
-        error: false,
-      });
-
-      form.reset();
-    } catch (error) {
-      setStatus({
-        loading: false,
-        message: 'Something went wrong. Please try again.',
-        error: true,
-      });
-    }
-  }
-
   return (
-    <form className="form form--contact" onSubmit={handleSubmit}>
-      <fieldset className="form-fieldset">
-        <legend className="form-legend">Your details</legend>
-
-        <div className="form-row">
-          <label className="form-label">
-            Name
-            <input
-              className="form-input"
-              type="text"
-              name="name"
-              required
-              autoComplete="name"
-              placeholder="Your name"
-            />
-          </label>
-        </div>
-
-        <div className="form-row form-row--contact-details">
-          <label className="form-label">
-            Email
-            <input
-              className="form-input"
-              type="email"
-              name="email"
-              required
-              autoComplete="email"
-              placeholder="you@example.com"
-            />
-          </label>
-
-          <label className="form-label">
-            Phone
-            <input
-              className="form-input"
-              type="tel"
-              name="phone"
-              autoComplete="tel"
-              inputMode="tel"
-              placeholder="(920) 555-1234"
-            />
-          </label>
-        </div>
-      </fieldset>
-
-      <fieldset className="form-fieldset">
-        <legend className="form-legend">Your next move</legend>
-
-        <div className="form-row">
-          <label className="form-label">
-            I’m looking to
-            <select className="form-input" name="intent" required defaultValue="">
-              <option value="" disabled>
-                Choose an option
-              </option>
-              <option value="buy">Buy a home</option>
-              <option value="sell">Sell a home</option>
-              <option value="both">Buy and sell</option>
-              <option value="just-curious">Just exploring options</option>
-            </select>
-          </label>
-        </div>
-
-        <div className="form-row">
-          <label className="form-label">
-            Message
-            <textarea
-              className="form-input form-textarea"
-              name="message"
-              rows={5}
-              placeholder="Tell us a little about what you are considering."
-            />
-          </label>
-        </div>
-      </fieldset>
-
-      <div className="form-row form-actions form-actions--contact">
-        <Button disabled={status.loading}>
-          {status.loading ? 'Sending…' : 'Send message'}
-        </Button>
-
-        <p className="form-note">
-          Your details are used only to respond to your enquiry.
-        </p>
+    <>
+      <div
+        className="contact-ghl-form"
+        style={{
+          width: '100%',
+          minWidth: 0,
+          backgroundColor: '#fff',
+          borderRadius: '3px',
+        }}
+      >
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/form/eVD6DqL3tZXg0bRl3KHQ"
+          style={{
+            display: 'block',
+            width: '100%',
+            maxWidth: '100%',
+            height: '1080px',
+            border: 'none',
+            borderRadius: '3px',
+          }}
+          id="inline-eVD6DqL3tZXg0bRl3KHQ"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Contact Submission Form"
+          data-height="1080"
+          data-layout-iframe-id="inline-eVD6DqL3tZXg0bRl3KHQ"
+          data-form-id="eVD6DqL3tZXg0bRl3KHQ"
+          data-cookie-consent="true"
+          data-cookie-consent-provider="auto"
+          title="Contact Submission Form"
+        />
       </div>
 
-      <div className="form-status-wrap" aria-live="polite">
-        {status.message && (
-          <p
-            className={
-              status.error ? 'form-status form-status--error' : 'form-status'
-            }
-          >
-            {status.message}
-          </p>
-        )}
-      </div>
-    </form>
+      <Script
+        src="https://link.msgsndr.com/js/form_embed.js"
+        strategy="afterInteractive"
+      />
+    </>
   );
 }

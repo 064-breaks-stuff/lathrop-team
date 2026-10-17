@@ -100,7 +100,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\karth\\Desktop\\Social 1st\\Lathrop Website\\lathrop-team",
+    "outputFileTracingRoot": "C:\\Users\\karth\\Desktop\\Social 1st\\Lathrop\\Lathrop Website\\lathrop-team",
     "experimental": {
       "useSkewCookie": false,
       "cacheLife": {
@@ -289,10 +289,17 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.mjs",
     "turbopack": {
-      "root": "C:\\Users\\karth\\Desktop\\Social 1st\\Lathrop Website\\lathrop-team"
-    }
+      "root": "C:\\Users\\karth\\Desktop\\Social 1st\\Lathrop\\Lathrop Website\\lathrop-team"
+    },
+    "_originalRedirects": [
+      {
+        "source": "/reviews",
+        "destination": "/#reviews",
+        "permanent": true
+      }
+    ]
   },
-  "appDir": "C:\\Users\\karth\\Desktop\\Social 1st\\Lathrop Website\\lathrop-team",
+  "appDir": "C:\\Users\\karth\\Desktop\\Social 1st\\Lathrop\\Lathrop Website\\lathrop-team",
   "relativeAppDir": "",
   "files": [
     ".next\\routes-manifest.json",

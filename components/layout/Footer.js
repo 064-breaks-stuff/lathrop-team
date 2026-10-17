@@ -76,13 +76,13 @@ export default function Footer() {
         <div className="footer-map">
           <div className="footer-map-header">
             <p className="footer-heading">Office location</p>
-            <span>Appleton, Wisconsin</span>
+            <span>Kimberly, Wisconsin</span>
           </div>
 
           <div className="footer-map-frame">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2857.210069477556!2d-88.46770222396349!3d44.26449767107976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8803b7a5ba3b6f2d%3A0x6b0d2f80904d9e2f!2sKeller%20Williams%20Fox%20Cities!5e0!3m2!1sen!2sin!4v1788252496599!5m2!1sen!2sin"
-              title="Keller Williams Fox Cities office location in Appleton, Wisconsin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2857.399714035176!2d-88.3487519239637!3d44.260595671079685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8803b046dc6c3455%3A0x3226fe789bf82f69!2s711%20Eisenhower%20Dr%2C%20Kimberly%2C%20WI%2054136%2C%20USA!5e0!3m2!1sen!2sin!4v1792264453708!5m2!1sen!2sin"
+              title="Lathrop Team office at 711 Eisenhower Drive, Kimberly, WI 54136"
               width="600"
               height="450"
               style={{ border: 0 }}
@@ -113,7 +113,9 @@ export default function Footer() {
           </div>
 
           <address>
-            517 N. Westhill Blvd, Appleton, WI
+            Lathrop Team
+            <br />
+            711 Eisenhower Drive, Kimberly, WI 54136
             <br />
             Each office is independently owned and operated.
           </address>

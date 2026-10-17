@@ -197,19 +197,20 @@ export default function ContactPage() {
           <ScrollReveal>
             <p className="editorial-eyebrow">
               <span className="editorial-eyebrow-rule" />
-              Brokerage office
+              Lathrop Team office
             </p>
 
             <h2 className="editorial-section-title">
-              Keller Williams
-              <em>Fox Cities.</em>
+              Visit the team
+              <em>in Kimberly.</em>
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={140}>
             <address className="contact-office-address">
-              <strong>Keller Williams Fox Cities</strong>
-              <span>517 N. Westhill Blvd, Appleton, WI</span>
+              <strong>Lathrop Team</strong>
+              <span>711 Eisenhower Drive, Kimberly, WI 54136</span>
+              <span>Affiliated with Keller Williams Fox Cities.</span>
               <span>Each office is independently owned and operated.</span>
             </address>
           </ScrollReveal>

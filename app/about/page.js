@@ -237,8 +237,9 @@ export default function AboutPage() {
 
           <ScrollReveal delay={140}>
             <address className="about-affiliation-address">
-              <strong>Keller Williams Fox Cities</strong>
-              <span>517 N. Westhill Blvd, Appleton, WI</span>
+              <strong>Lathrop Team</strong>
+              <span>711 Eisenhower Drive, Kimberly, WI 54136</span>
+              <span>Affiliated with Keller Williams Fox Cities.</span>
               <span>Each office is independently owned and operated.</span>
             </address>
           </ScrollReveal>
