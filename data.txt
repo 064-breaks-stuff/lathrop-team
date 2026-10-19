@@ -25,6 +25,16 @@ public/
     └── contact/
         └── fox-cities-office.jpg
 
-npx opennextjs-cloudflare build && npx opennextjs-cloudflare deploy
+REM Stop npm run dev first.
 
-last prompt response talks about 
+if exist ".next" rmdir /s /q ".next"
+if exist ".open-next" rmdir /s /q ".open-next"
+
+npx opennextjs-cloudflare build && npx opennextjs-cloudflare preview
+
+REM Test preview. If it passes, press Ctrl+C.
+REM If you change source, rebuild and retest.
+
+npx opennextjs-cloudflare deploy
+
+REM Verify production HTTP responses and browser navigation.

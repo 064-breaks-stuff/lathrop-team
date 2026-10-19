@@ -58,8 +58,27 @@ function isOpenNextError(e) {
     return false;
   }
 }
+var IgnorableError, FatalError;
 var init_error = __esm({
   "node_modules/@opennextjs/aws/dist/utils/error.js"() {
+    IgnorableError = class extends Error {
+      __openNextInternal = true;
+      canIgnore = true;
+      logLevel = 0;
+      constructor(message) {
+        super(message);
+        this.name = "IgnorableError";
+      }
+    };
+    FatalError = class extends Error {
+      __openNextInternal = true;
+      canIgnore = false;
+      logLevel = 2;
+      constructor(message) {
+        super(message);
+        this.name = "FatalError";
+      }
+    };
   }
 });
 
@@ -547,6 +566,81 @@ var init_cloudflare_edge = __esm({
   }
 });
 
+// node_modules/@opennextjs/aws/dist/overrides/tagCache/dummy.js
+var dummy_exports = {};
+__export(dummy_exports, {
+  default: () => dummy_default
+});
+var dummyTagCache, dummy_default;
+var init_dummy = __esm({
+  "node_modules/@opennextjs/aws/dist/overrides/tagCache/dummy.js"() {
+    dummyTagCache = {
+      name: "dummy",
+      mode: "original",
+      getByPath: async () => {
+        return [];
+      },
+      getByTag: async () => {
+        return [];
+      },
+      getLastModified: async (_, lastModified) => {
+        return lastModified ?? Date.now();
+      },
+      writeTags: async () => {
+        return;
+      },
+      isStale: async (_path) => {
+        return false;
+      }
+    };
+    dummy_default = dummyTagCache;
+  }
+});
+
+// node_modules/@opennextjs/aws/dist/overrides/queue/dummy.js
+var dummy_exports2 = {};
+__export(dummy_exports2, {
+  default: () => dummy_default2
+});
+var dummyQueue, dummy_default2;
+var init_dummy2 = __esm({
+  "node_modules/@opennextjs/aws/dist/overrides/queue/dummy.js"() {
+    init_error();
+    dummyQueue = {
+      name: "dummy",
+      send: async () => {
+        throw new FatalError("Dummy queue is not implemented");
+      }
+    };
+    dummy_default2 = dummyQueue;
+  }
+});
+
+// node_modules/@opennextjs/aws/dist/overrides/incrementalCache/dummy.js
+var dummy_exports3 = {};
+__export(dummy_exports3, {
+  default: () => dummy_default3
+});
+var dummyIncrementalCache, dummy_default3;
+var init_dummy3 = __esm({
+  "node_modules/@opennextjs/aws/dist/overrides/incrementalCache/dummy.js"() {
+    init_error();
+    dummyIncrementalCache = {
+      name: "dummy",
+      get: async () => {
+        throw new IgnorableError('"Dummy" cache does not cache anything');
+      },
+      set: async () => {
+        throw new IgnorableError('"Dummy" cache does not cache anything');
+      },
+      delete: async () => {
+        throw new IgnorableError('"Dummy" cache does not cache anything');
+      }
+    };
+    dummy_default3 = dummyIncrementalCache;
+  }
+});
+
 // node_modules/@opennextjs/aws/dist/overrides/originResolver/pattern-env.js
 var pattern_env_exports = {};
 __export(pattern_env_exports, {
@@ -613,17 +707,17 @@ var init_pattern_env = __esm({
 });
 
 // node_modules/@opennextjs/aws/dist/overrides/assetResolver/dummy.js
-var dummy_exports = {};
-__export(dummy_exports, {
-  default: () => dummy_default
+var dummy_exports4 = {};
+__export(dummy_exports4, {
+  default: () => dummy_default4
 });
-var resolver, dummy_default;
-var init_dummy = __esm({
+var resolver, dummy_default4;
+var init_dummy4 = __esm({
   "node_modules/@opennextjs/aws/dist/overrides/assetResolver/dummy.js"() {
     resolver = {
       name: "dummy"
     };
-    dummy_default = resolver;
+    dummy_default4 = resolver;
   }
 });
 
@@ -868,6 +962,27 @@ async function resolveWrapper(wrapper) {
   const m_1 = await Promise.resolve().then(() => (init_cloudflare_edge(), cloudflare_edge_exports));
   return m_1.default;
 }
+async function resolveTagCache(tagCache) {
+  if (typeof tagCache === "function") {
+    return tagCache();
+  }
+  const m_1 = await Promise.resolve().then(() => (init_dummy(), dummy_exports));
+  return m_1.default;
+}
+async function resolveQueue(queue) {
+  if (typeof queue === "function") {
+    return queue();
+  }
+  const m_1 = await Promise.resolve().then(() => (init_dummy2(), dummy_exports2));
+  return m_1.default;
+}
+async function resolveIncrementalCache(incrementalCache) {
+  if (typeof incrementalCache === "function") {
+    return incrementalCache();
+  }
+  const m_1 = await Promise.resolve().then(() => (init_dummy3(), dummy_exports3));
+  return m_1.default;
+}
 async function resolveOriginResolver(originResolver) {
   if (typeof originResolver === "function") {
     return originResolver();
@@ -879,7 +994,7 @@ async function resolveAssetResolver(assetResolver) {
   if (typeof assetResolver === "function") {
     return assetResolver();
   }
-  const m_1 = await Promise.resolve().then(() => (init_dummy(), dummy_exports));
+  const m_1 = await Promise.resolve().then(() => (init_dummy4(), dummy_exports4));
   return m_1.default;
 }
 async function resolveProxyRequest(proxyRequest) {
@@ -914,12 +1029,12 @@ var NEXT_DIR = path.join(__dirname, ".next");
 var OPEN_NEXT_DIR = path.join(__dirname, ".open-next");
 debug({ NEXT_DIR, OPEN_NEXT_DIR });
 var NextConfig = { "env": {}, "webpack": null, "eslint": { "ignoreDuringBuilds": false }, "typescript": { "ignoreBuildErrors": false, "tsconfigPath": "tsconfig.json" }, "typedRoutes": false, "distDir": ".next", "cleanDistDir": true, "assetPrefix": "", "cacheMaxMemorySize": 52428800, "configOrigin": "next.config.mjs", "useFileSystemPublicRoutes": true, "generateEtags": true, "pageExtensions": ["tsx", "ts", "jsx", "js"], "poweredByHeader": true, "compress": true, "images": { "deviceSizes": [640, 750, 828, 1080, 1200, 1920, 2048, 3840], "imageSizes": [16, 32, 48, 64, 96, 128, 256, 384], "path": "/_next/image", "loader": "default", "loaderFile": "", "domains": [], "disableStaticImages": false, "minimumCacheTTL": 60, "formats": ["image/webp"], "maximumResponseBody": 5e7, "dangerouslyAllowSVG": false, "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;", "contentDispositionType": "attachment", "remotePatterns": [], "unoptimized": true }, "devIndicators": { "position": "bottom-left" }, "onDemandEntries": { "maxInactiveAge": 6e4, "pagesBufferLength": 5 }, "amp": { "canonicalBase": "" }, "basePath": "", "sassOptions": {}, "trailingSlash": false, "i18n": null, "productionBrowserSourceMaps": false, "excludeDefaultMomentLocales": true, "serverRuntimeConfig": {}, "publicRuntimeConfig": {}, "reactProductionProfiling": false, "reactStrictMode": true, "reactMaxHeadersLength": 6e3, "httpAgentOptions": { "keepAlive": true }, "logging": {}, "compiler": {}, "expireTime": 31536e3, "staticPageGenerationTimeout": 60, "output": "standalone", "modularizeImports": { "@mui/icons-material": { "transform": "@mui/icons-material/{{member}}" }, "lodash": { "transform": "lodash/{{member}}" } }, "outputFileTracingRoot": "C:\\Users\\karth\\Desktop\\Social 1st\\Lathrop\\Lathrop Website\\lathrop-team", "experimental": { "useSkewCookie": false, "cacheLife": { "default": { "stale": 300, "revalidate": 900, "expire": 4294967294 }, "seconds": { "stale": 30, "revalidate": 1, "expire": 60 }, "minutes": { "stale": 300, "revalidate": 60, "expire": 3600 }, "hours": { "stale": 300, "revalidate": 3600, "expire": 86400 }, "days": { "stale": 300, "revalidate": 86400, "expire": 604800 }, "weeks": { "stale": 300, "revalidate": 604800, "expire": 2592e3 }, "max": { "stale": 300, "revalidate": 2592e3, "expire": 4294967294 } }, "cacheHandlers": {}, "cssChunking": true, "multiZoneDraftMode": false, "appNavFailHandling": false, "prerenderEarlyExit": true, "serverMinification": true, "serverSourceMaps": false, "linkNoTouchStart": false, "caseSensitiveRoutes": false, "clientSegmentCache": false, "clientParamParsing": false, "dynamicOnHover": false, "preloadEntriesOnStart": true, "clientRouterFilter": true, "clientRouterFilterRedirects": false, "fetchCacheKeyPrefix": "", "middlewarePrefetch": "flexible", "optimisticClientCache": true, "manualClientBasePath": false, "cpus": 15, "memoryBasedWorkersCount": false, "imgOptConcurrency": null, "imgOptTimeoutInSeconds": 7, "imgOptMaxInputPixels": 268402689, "imgOptSequentialRead": null, "isrFlushToDisk": true, "workerThreads": false, "optimizeCss": false, "nextScriptWorkers": false, "scrollRestoration": false, "externalDir": false, "disableOptimizedLoading": false, "gzipSize": true, "craCompat": false, "esmExternals": true, "fullySpecified": false, "swcTraceProfiling": false, "forceSwcTransforms": false, "largePageDataBytes": 128e3, "typedEnv": false, "parallelServerCompiles": false, "parallelServerBuildTraces": false, "ppr": false, "authInterrupts": false, "webpackMemoryOptimizations": false, "optimizeServerReact": true, "viewTransition": false, "routerBFCache": false, "removeUncaughtErrorAndRejectionListeners": false, "validateRSCRequestHeaders": false, "staleTimes": { "dynamic": 0, "static": 300 }, "serverComponentsHmrCache": true, "staticGenerationMaxConcurrency": 8, "staticGenerationMinPagesPerWorker": 25, "cacheComponents": false, "inlineCss": false, "useCache": false, "globalNotFound": false, "devtoolSegmentExplorer": true, "browserDebugInfoInTerminal": false, "optimizeRouterScrolling": false, "middlewareClientMaxBodySize": 10485760, "optimizePackageImports": ["lucide-react", "date-fns", "lodash-es", "ramda", "antd", "react-bootstrap", "ahooks", "@ant-design/icons", "@headlessui/react", "@headlessui-float/react", "@heroicons/react/20/solid", "@heroicons/react/24/solid", "@heroicons/react/24/outline", "@visx/visx", "@tremor/react", "rxjs", "@mui/material", "@mui/icons-material", "recharts", "react-use", "effect", "@effect/schema", "@effect/platform", "@effect/platform-node", "@effect/platform-browser", "@effect/platform-bun", "@effect/sql", "@effect/sql-mssql", "@effect/sql-mysql2", "@effect/sql-pg", "@effect/sql-sqlite-node", "@effect/sql-sqlite-bun", "@effect/sql-sqlite-wasm", "@effect/sql-sqlite-react-native", "@effect/rpc", "@effect/rpc-http", "@effect/typeclass", "@effect/experimental", "@effect/opentelemetry", "@material-ui/core", "@material-ui/icons", "@tabler/icons-react", "mui-core", "react-icons/ai", "react-icons/bi", "react-icons/bs", "react-icons/cg", "react-icons/ci", "react-icons/di", "react-icons/fa", "react-icons/fa6", "react-icons/fc", "react-icons/fi", "react-icons/gi", "react-icons/go", "react-icons/gr", "react-icons/hi", "react-icons/hi2", "react-icons/im", "react-icons/io", "react-icons/io5", "react-icons/lia", "react-icons/lib", "react-icons/lu", "react-icons/md", "react-icons/pi", "react-icons/ri", "react-icons/rx", "react-icons/si", "react-icons/sl", "react-icons/tb", "react-icons/tfi", "react-icons/ti", "react-icons/vsc", "react-icons/wi"], "trustHostHeader": false, "isExperimentalCompile": false }, "htmlLimitedBots": "[\\w-]+-Google|Google-[\\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight", "bundlePagesRouterDependencies": false, "configFileName": "next.config.mjs", "turbopack": { "root": "C:\\Users\\karth\\Desktop\\Social 1st\\Lathrop\\Lathrop Website\\lathrop-team" }, "_originalRedirects": [{ "source": "/reviews", "destination": "/#reviews", "permanent": true }] };
-var BuildId = "4KwF16Tn5wTstGensDM7I";
+var BuildId = "wBWEDTpFF_C_RBu2zfd8y";
 var RoutesManifest = { "basePath": "", "rewrites": { "beforeFiles": [], "afterFiles": [], "fallback": [] }, "redirects": [{ "source": "/:path+/", "destination": "/:path+", "internal": true, "statusCode": 308, "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$" }, { "source": "/reviews", "destination": "/#reviews", "statusCode": 308, "regex": "^(?!/_next)/reviews(?:/)?$" }], "routes": { "static": [{ "page": "/", "regex": "^/(?:/)?$", "routeKeys": {}, "namedRegex": "^/(?:/)?$" }, { "page": "/_not-found", "regex": "^/_not\\-found(?:/)?$", "routeKeys": {}, "namedRegex": "^/_not\\-found(?:/)?$" }, { "page": "/about", "regex": "^/about(?:/)?$", "routeKeys": {}, "namedRegex": "^/about(?:/)?$" }, { "page": "/buy", "regex": "^/buy(?:/)?$", "routeKeys": {}, "namedRegex": "^/buy(?:/)?$" }, { "page": "/communities", "regex": "^/communities(?:/)?$", "routeKeys": {}, "namedRegex": "^/communities(?:/)?$" }, { "page": "/contact", "regex": "^/contact(?:/)?$", "routeKeys": {}, "namedRegex": "^/contact(?:/)?$" }, { "page": "/home-valuation", "regex": "^/home\\-valuation(?:/)?$", "routeKeys": {}, "namedRegex": "^/home\\-valuation(?:/)?$" }, { "page": "/sell", "regex": "^/sell(?:/)?$", "routeKeys": {}, "namedRegex": "^/sell(?:/)?$" }, { "page": "/team", "regex": "^/team(?:/)?$", "routeKeys": {}, "namedRegex": "^/team(?:/)?$" }], "dynamic": [{ "page": "/communities/[slug]", "regex": "^/communities/([^/]+?)(?:/)?$", "routeKeys": { "nxtPslug": "nxtPslug" }, "namedRegex": "^/communities/(?<nxtPslug>[^/]+?)(?:/)?$" }], "data": { "static": [], "dynamic": [] } }, "locales": [] };
 var ConfigHeaders = [];
-var PrerenderManifest = { "version": 4, "routes": { "/_not-found": { "initialStatus": 404, "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/_not-found", "dataRoute": "/_not-found.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/buy": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/buy", "dataRoute": "/buy.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/appleton": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/appleton.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/greenville": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/greenville.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/kaukauna": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/kaukauna.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/kimberly": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/kimberly.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/little-chute": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/little-chute.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/menasha": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/menasha.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/neenah": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/neenah.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/oshkosh": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/oshkosh.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/home-valuation": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/home-valuation", "dataRoute": "/home-valuation.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/about": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/about", "dataRoute": "/about.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/sell": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/sell", "dataRoute": "/sell.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/team": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/team", "dataRoute": "/team.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/contact": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/contact", "dataRoute": "/contact.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/", "dataRoute": "/index.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities", "dataRoute": "/communities.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] } }, "dynamicRoutes": { "/communities/[slug]": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "routeRegex": "^/communities/([^/]+?)(?:/)?$", "dataRoute": "/communities/[slug].rsc", "fallback": false, "dataRouteRegex": "^/communities/([^/]+?)\\.rsc$", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] } }, "notFoundRoutes": [], "preview": { "previewModeId": "467bb412d1ca5d24c46078e269e18357", "previewModeSigningKey": "73aaab08dd744ad0a5cc0077b1efefb150055c5ea37bbe3830da213a5f0d238f", "previewModeEncryptionKey": "a61e59e7d59a9ec9ab68477843ac800403810f3766e259e3ffd43cc7f54153fd" } };
+var PrerenderManifest = { "version": 4, "routes": { "/_not-found": { "initialStatus": 404, "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/_not-found", "dataRoute": "/_not-found.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/about": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/about", "dataRoute": "/about.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/buy": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/buy", "dataRoute": "/buy.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/sell": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/sell", "dataRoute": "/sell.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/contact": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/contact", "dataRoute": "/contact.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/", "dataRoute": "/index.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/team": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/team", "dataRoute": "/team.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/appleton": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/appleton.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/greenville": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/greenville.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/kaukauna": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/kaukauna.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/kimberly": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/kimberly.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/little-chute": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/little-chute.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/menasha": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/menasha.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/neenah": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/neenah.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities/oshkosh": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities/[slug]", "dataRoute": "/communities/oshkosh.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/communities": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/communities", "dataRoute": "/communities.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/home-valuation": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/home-valuation", "dataRoute": "/home-valuation.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] } }, "dynamicRoutes": { "/communities/[slug]": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "routeRegex": "^/communities/([^/]+?)(?:/)?$", "dataRoute": "/communities/[slug].rsc", "fallback": false, "dataRouteRegex": "^/communities/([^/]+?)\\.rsc$", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] } }, "notFoundRoutes": [], "preview": { "previewModeId": "870e09c498921f6092fa3fcb252f4af3", "previewModeSigningKey": "4e4a31b77b31ffe25a6d109d7ad047517eab5149094bcaecc990dab0c10a4aa0", "previewModeEncryptionKey": "281d7d3f6cc310b3ed04030477947adc53ed332d8ffe15f7c70aa7f6ac14400d" } };
 var MiddlewareManifest = { "version": 3, "middleware": {}, "functions": {}, "sortedMiddleware": [] };
-var AppPathRoutesManifest = { "/_not-found/page": "/_not-found", "/api/valuation/route": "/api/valuation", "/api/contact/route": "/api/contact", "/communities/[slug]/page": "/communities/[slug]", "/page": "/", "/buy/page": "/buy", "/about/page": "/about", "/communities/page": "/communities", "/contact/page": "/contact", "/home-valuation/page": "/home-valuation", "/team/page": "/team", "/sell/page": "/sell" };
+var AppPathRoutesManifest = { "/_not-found/page": "/_not-found", "/api/valuation/route": "/api/valuation", "/api/contact/route": "/api/contact", "/contact/page": "/contact", "/about/page": "/about", "/buy/page": "/buy", "/page": "/", "/communities/page": "/communities", "/home-valuation/page": "/home-valuation", "/sell/page": "/sell", "/team/page": "/team", "/communities/[slug]/page": "/communities/[slug]" };
 var FunctionsConfigManifest = { "version": 1, "functions": {} };
 var PagesManifest = { "/_app": "pages/_app.js", "/_error": "pages/_error.js", "/_document": "pages/_document.js", "/404": "pages/404.html" };
 process.env.NEXT_BUILD_ID = BuildId;
@@ -2705,6 +2820,9 @@ var defaultHandler = async (internalEvent, options) => {
   const originResolver = await resolveOriginResolver(middlewareConfig?.originResolver);
   const externalRequestProxy = await resolveProxyRequest(middlewareConfig?.override?.proxyExternalRequest);
   const assetResolver = await resolveAssetResolver(middlewareConfig?.assetResolver);
+  globalThis.tagCache = await resolveTagCache(middlewareConfig?.override?.tagCache);
+  globalThis.queue = await resolveQueue(middlewareConfig?.override?.queue);
+  globalThis.incrementalCache = await resolveIncrementalCache(middlewareConfig?.override?.incrementalCache);
   const requestId = Math.random().toString(36);
   return runWithOpenNextRequestContext({
     isISRRevalidation: internalEvent.headers["x-isr"] === "1",

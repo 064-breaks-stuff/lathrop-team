@@ -1,0 +1,60 @@
+.footer-map-frame--linked {
+  position: relative;
+  isolation: isolate;
+}
+
+.footer-map-frame--linked iframe {
+  pointer-events: none;
+}
+
+.footer-map-click-target {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1rem;
+  cursor: pointer;
+  color: var(--ink, #141414);
+  text-decoration: none;
+}
+
+.footer-map-link-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  max-width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(20, 20, 20, 0.25);
+  background: var(--paper, #faf8f5);
+  box-shadow: 0 0.25rem 1rem rgba(20, 20, 20, 0.12);
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.footer-map-link-label > span {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.footer-map-click-target:hover .footer-map-link-label {
+  border-color: var(--ink, #141414);
+  background: var(--ink, #141414);
+  color: var(--paper, #faf8f5);
+}
+
+.footer-map-click-target:focus-visible {
+  outline: 3px solid var(--ink, #141414);
+  outline-offset: -5px;
+}
+
+.footer-map-click-target:focus-visible .footer-map-link-label {
+  border-color: var(--ink, #141414);
+  background: var(--ink, #141414);
+  color: var(--paper, #faf8f5);
+}

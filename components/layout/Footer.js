@@ -1,5 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import './footer-map-link.css';
+
+const officeMapUrl = 'https://share.google/QKy2WkmWD0EicKUqx';
+
+const officeMapEmbedUrl =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2857.399714035176!2d-88.3487519239637!3d44.260595671079685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8803b046dc6c3455%3A0x3226fe789bf82f69!2s711%20Eisenhower%20Dr%2C%20Kimberly%2C%20WI%2054136%2C%20USA!5e0!3m2!1sen!2sin!4v1792264453708!5m2!1sen!2sin';
 
 const navigationLinks = [
   { href: '/buy', label: 'Buy' },
@@ -16,13 +22,18 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="site-footer-top">
         <div className="footer-brand">
-          <Link href="/" className="site-logo" aria-label="Lathrop Team Home">
+          <Link
+            href="/"
+            className="site-logo"
+            aria-label="Lathrop Team Home"
+          >
             <Image
               src="/logos/1.jpg"
               alt="Lathrop Team logo"
               width={42}
               height={42}
             />
+
             <span className="site-logo-text">Lathrop Team</span>
           </Link>
 
@@ -55,19 +66,25 @@ export default function Footer() {
           <address>
             <p>
               <strong>Diane Lathrop</strong>
-              <a href="mailto:diane@lathropteam.com">diane@lathropteam.com</a>
+              <a href="mailto:diane@lathropteam.com">
+                diane@lathropteam.com
+              </a>
               <a href="tel:+19204289227">(920) 428-9227</a>
             </p>
 
             <p>
               <strong>Shane Lathrop</strong>
-              <a href="mailto:shane@lathropteam.com">shane@lathropteam.com</a>
+              <a href="mailto:shane@lathropteam.com">
+                shane@lathropteam.com
+              </a>
               <a href="tel:+19204280066">(920) 428-0066</a>
             </p>
 
             <p>
               <strong>Oliver Lathrop</strong>
-              <a href="mailto:oliver@lathropteam.com">oliver@lathropteam.com</a>
+              <a href="mailto:oliver@lathropteam.com">
+                oliver@lathropteam.com
+              </a>
               <a href="tel:+19208584424">(920) 858-4424</a>
             </p>
           </address>
@@ -79,17 +96,31 @@ export default function Footer() {
             <span>Kimberly, Wisconsin</span>
           </div>
 
-          <div className="footer-map-frame">
+          <div className="footer-map-frame footer-map-frame--linked">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2857.399714035176!2d-88.3487519239637!3d44.260595671079685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8803b046dc6c3455%3A0x3226fe789bf82f69!2s711%20Eisenhower%20Dr%2C%20Kimberly%2C%20WI%2054136%2C%20USA!5e0!3m2!1sen!2sin!4v1792264453708!5m2!1sen!2sin"
-              title="Lathrop Team office at 711 Eisenhower Drive, Kimberly, WI 54136"
+              src={officeMapEmbedUrl}
+              title="Map preview of the Lathrop Team office at 711 Eisenhower Drive, Kimberly, WI 54136"
               width="600"
               height="450"
               style={{ border: 0 }}
-              allowFullScreen
               loading="lazy"
               referrerPolicy="strict-origin-when-cross-origin"
+              tabIndex={-1}
+              aria-hidden="true"
             />
+
+            <a
+              href={officeMapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-map-click-target"
+              aria-label="Open the Lathrop Team office location in Google Maps (opens in a new tab)"
+            >
+              <span className="footer-map-link-label">
+                Open in Google Maps
+                <span aria-hidden="true">↗</span>
+              </span>
+            </a>
           </div>
         </div>
       </div>
@@ -100,10 +131,6 @@ export default function Footer() {
             <p>Keller Williams Fox Cities</p>
 
             <Image
-              /*
-                Replace with the exact approved KW logo file path.
-                Example: /logos/kw-logo.jpg
-              */
               src="/PLACEHOLDER-KW-LOGO.jpg"
               alt="Keller Williams Fox Cities"
               width={132}
@@ -124,36 +151,32 @@ export default function Footer() {
         <div className="footer-compliance-marks">
           <div className="footer-compliance-mark">
             <Image
-              /*
-                Replace with the approved Equal Housing mark file path.
-                Example: /logos/equal-housing.jpg
-              */
               src="/PLACEHOLDER-EQUAL-HOUSING.jpg"
               alt="Equal Housing Opportunity"
               width={42}
               height={42}
             />
+
             <span>Equal Housing Opportunity</span>
           </div>
 
           <div className="footer-compliance-mark">
             <Image
-              /*
-                Replace with the approved REALTOR® mark file path.
-                Example: /logos/realtor-mark.jpg
-              */
               src="/PLACEHOLDER-REALTOR-MARK.jpg"
               alt="REALTOR®"
               width={42}
               height={42}
             />
+
             <span>REALTOR®</span>
           </div>
         </div>
       </div>
 
       <div className="site-footer-bottom">
-        <p>© {new Date().getFullYear()} Lathrop Team. All rights reserved.</p>
+        <p>
+          © {new Date().getFullYear()} Lathrop Team. All rights reserved.
+        </p>
 
         <div>
           <span>Fox Cities, Wisconsin</span>
