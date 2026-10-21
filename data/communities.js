@@ -17,24 +17,38 @@ function createPlaceholderStats() {
   }));
 }
 
-function createPlaceholderImage(label) {
-  return {
-    src: null,
-    alt: '',
-    label,
-    isPlaceholder: true,
-  };
+const communityGalleryPrefixes = {
+  Appleton: 'appleton',
+  Neenah: 'neenah',
+  Menasha: 'menasha',
+  Kaukauna: 'kaukauna',
+  Kimberly: 'kimberly',
+  'Little Chute': 'littlechute',
+  Greenville: 'greenville',
+  Oshkosh: 'oshkosh',
+};
+
+function createCommunityGallery(name) {
+  const prefix = communityGalleryPrefixes[name];
+
+  if (!prefix) {
+    throw new Error(`Missing gallery image prefix for "${name}".`);
+  }
+
+  return [1, 2, 3].map((number) => ({
+    src: `/communities/${prefix}${number}.jpg`,
+    alt: `${name} gallery photograph ${number}`,
+    label: `${name} gallery photograph ${String(number).padStart(2, '0')}`,
+    isPlaceholder: false,
+    objectPosition: 'center',
+  }));
 }
 
 function createCommunityDetails(name) {
   return {
     heroImage: communityImages[name],
     stats: createPlaceholderStats(),
-    propertyGallery: [
-      createPlaceholderImage(`${name} property photo 01`),
-      createPlaceholderImage(`${name} property photo 02`),
-      createPlaceholderImage(`${name} property photo 03`),
-    ],
+    propertyGallery: createCommunityGallery(name),
     finalCta: {
       title: `Let’s talk about your next move in ${name}.`,
       copy:

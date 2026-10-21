@@ -184,8 +184,8 @@ function CommunityPropertyGallery({ community }) {
           A closer look at {community.name}.
         </h2>
         <p className="community-detail-section-copy">
-          Approved property photography will be added here. These
-          placeholders do not represent active listings.
+          Explore the photo gallery for {community.name}. For current
+          property availability, contact the Lathrop Team.
         </p>
       </div>
 
