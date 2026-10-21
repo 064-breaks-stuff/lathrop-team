@@ -2943,3 +2943,106 @@
 .editorial-team-portrait::after {
   content: none;
 }
+
+/* =========================================================
+   TEAM PORTRAITS: PROPORTIONAL IMAGES AND CONSISTENT FRAMING
+   ========================================================= */
+
+.page-team .editorial-team-portrait {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: #141414;
+}
+
+/* Preserve the source photograph's proportions.
+   The image may crop, but it will not stretch to fit. */
+.page-team .editorial-team-portrait .editorial-team-photo {
+  object-fit: cover;
+  object-position: 50% 25%;
+  transform: none;
+  filter: none;
+  opacity: 1;
+}
+
+/* Remove decorative shapes inherited from the placeholder design. */
+.page-team .editorial-team-portrait::before,
+.page-team .editorial-team-portrait::after {
+  display: none;
+}
+
+/* Keep the photograph clear, with contrast only near the caption. */
+.page-team .editorial-team-portrait-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    transparent 65%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  pointer-events: none;
+}
+
+/* Keep the editorial frame inside the image. */
+.page-team .editorial-team-portrait-frame {
+  position: absolute;
+  inset: 1.25rem;
+  z-index: 2;
+  border: 1px solid rgba(250, 248, 245, 0.45);
+  pointer-events: none;
+}
+
+/* Explicit positioning avoids the previous flex distribution. */
+.page-team .editorial-team-portrait-index {
+  position: absolute;
+  top: 1.75rem;
+  left: 1.75rem;
+  z-index: 3;
+  color: rgba(250, 248, 245, 0.85);
+  font-size: 0.63rem;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.page-team .editorial-team-portrait-descriptor {
+  position: absolute;
+  right: 1.75rem;
+  bottom: 1.75rem;
+  left: 1.75rem;
+  z-index: 3;
+  color: rgba(250, 248, 245, 0.9);
+  font-size: 0.63rem;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  .page-team .editorial-team-portrait {
+    aspect-ratio: 4 / 5;
+  }
+
+  .page-team .editorial-team-portrait-frame {
+    inset: 1rem;
+  }
+
+  .page-team .editorial-team-portrait-index {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .page-team .editorial-team-portrait-descriptor {
+    right: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+}

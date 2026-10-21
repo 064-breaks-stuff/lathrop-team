@@ -131,7 +131,7 @@ export default function Footer() {
             <p>Keller Williams Fox Cities</p>
 
             <Image
-              src="/PLACEHOLDER-KW-LOGO.jpg"
+              src="/PLACEHOLDER-KW-LOGO.png"
               alt="Keller Williams Fox Cities"
               width={132}
               height={48}
@@ -146,30 +146,6 @@ export default function Footer() {
             <br />
             Each office is independently owned and operated.
           </address>
-        </div>
-
-        <div className="footer-compliance-marks">
-          <div className="footer-compliance-mark">
-            <Image
-              src="/PLACEHOLDER-EQUAL-HOUSING.jpg"
-              alt="Equal Housing Opportunity"
-              width={42}
-              height={42}
-            />
-
-            <span>Equal Housing Opportunity</span>
-          </div>
-
-          <div className="footer-compliance-mark">
-            <Image
-              src="/PLACEHOLDER-REALTOR-MARK.jpg"
-              alt="REALTOR®"
-              width={42}
-              height={42}
-            />
-
-            <span>REALTOR®</span>
-          </div>
         </div>
       </div>
 
