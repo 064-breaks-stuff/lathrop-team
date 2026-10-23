@@ -1,0 +1,90 @@
+.thank-you-page {
+  position: relative;
+  display: grid;
+  min-height: 70vh;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+  background: var(--ink, #141414);
+  color: var(--paper, #faf8f5);
+}
+
+.thank-you-page-frame {
+  position: absolute;
+  inset: clamp(1rem, 3vw, 3rem);
+  border: 1px solid rgba(250, 248, 245, 0.35);
+  pointer-events: none;
+}
+
+.thank-you-page-content {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 54rem);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.thank-you-page-eyebrow {
+  margin: 0 0 2rem;
+  color: rgba(250, 248, 245, 0.7);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.thank-you-page-title {
+  margin: 0;
+  color: var(--paper, #faf8f5);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.thank-you-page-title em {
+  display: block;
+  max-width: 44rem;
+  margin: 1.5rem auto 0;
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.thank-you-page-description {
+  max-width: 32rem;
+  margin: 2rem auto 0;
+  color: rgba(250, 248, 245, 0.75);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.thank-you-page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  margin-top: 2.5rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.thank-you-page-link:focus-visible {
+  outline: 2px solid var(--paper, #faf8f5);
+  outline-offset: 5px;
+}
+
+@media (max-width: 700px) {
+  .thank-you-page {
+    min-height: 65vh;
+    padding: 5rem 2rem;
+  }
+
+  .thank-you-page-link {
+    padding: 0.85rem 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+  }
+}
