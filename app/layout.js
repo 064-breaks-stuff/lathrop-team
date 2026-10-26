@@ -10,9 +10,7 @@ import SiteShell from '../components/layout/SiteShell';
 import MetaPixelEvents from '../components/analytics/MetaPixelEvents';
 
 export const metadata = {
-  metadataBase: new URL(
-    'https://lathrop-team.united-states.workers.dev'
-  ),
+  metadataBase: new URL('https://www.lathropteam.com'),
   title: {
     default: 'Lathrop Team | Fox Cities Real Estate',
     template: '%s | Lathrop Team',

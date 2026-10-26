@@ -38,3 +38,8 @@ REM If you change source, rebuild and retest.
 npx opennextjs-cloudflare deploy
 
 REM Verify production HTTP responses and browser navigation.
+
+in case of problems:
+
+npx opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion && npx opennextjs-cloudflare preview
+npx opennextjs-cloudflare deploy
